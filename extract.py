@@ -3,6 +3,7 @@ import os
 import re
 import string
 import fuzzy
+import translate
 from pydub import AudioSegment
 import  script_sanitzer
 from google.cloud import speech_v1p1beta1 as speech
@@ -144,7 +145,7 @@ def gen_transcript(filename:str,script_path:str):
             
         else:
             #create nodes
-            node_to_add = Node(sentence[1],sentence[0],start,end)
+            node_to_add = Node(sentence[1],translate.translate_phrase(sentence[0],'de'),start,end)
             empty_queue.append(node_to_add)
     print(empty_queue)
         
