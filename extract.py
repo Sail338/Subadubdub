@@ -19,11 +19,15 @@ class Node:
         :param start the overall start time of the sentence
         :param end the overall end time of the sentence
     """
-    def __init__(self,words,sentence,start,end):
-        self.words = words
+    def __init__(self,speaker,sentence,start,end):
         self.sentence = sentence
         self.start = start
         self.end = end
+        self.speaker = speaker
+    def __repr__(self):
+        a = "\n\nSentence: " + self.sentence +  "\nStart:  " + str(self.start) + "\nend: " + str(self.end) + "\nSpeaker: " + self.speaker +"\n\n"
+        return a
+        
 
 def gen_transcript(filename:str,script_path:str):
     """generates a transcript"""
@@ -68,14 +72,17 @@ def gen_transcript(filename:str,script_path:str):
     start = -1.1
     end = -1.1
     for sentence in sentences:
+        actualSize = findSize(sentence[0])
         print(transcript_ptr)
         start = -1.0
         end = -1.0
         found = False
         for word in sentence[0].split(" "):
+            if word.isspace():
+                continue
             if(found):
                 break
-            for word2 in merged_words[transcript_ptr:len(sentence[0])]:
+            for word2 in merged_words[transcript_ptr:transcript_ptr+actualSize]:
                 #find start
                 if check_words_equal(word,word2[0]):
                     start = word2[1]
@@ -84,11 +91,21 @@ def gen_transcript(filename:str,script_path:str):
                     
         found = False 
         for word in sentence[0].split(" ")[::-1]:
+            print("WORD: "+str(word))
+            if word.isspace():
+                continue
             if(found):
 
                 break
-            for word2 in range(len(merged_words[transcript_ptr:len(sentence)]),-1,-1):
+            for word2 in range(transcript_ptr+actualSize,transcript_ptr-1,-1):
+                if(word2 >= len(merged_words)):
+                    continue
+                print(actualSize)
+                print(sentence[0].split(" "))
                 #find start
+                print(word2)
+                print(len(merged_words))
+                print("WORD 2:     "+str(merged_words[word2][0]))
                 if check_words_equal(word,merged_words[word2][0]):
                     end = merged_words[word2][2]
                     transcript_ptr = word2 + 1
@@ -97,7 +114,9 @@ def gen_transcript(filename:str,script_path:str):
         if start < 0 or end <0:
             raise Exception
         else:
-            empty_queue.append((start,end,sentence))
+            #create nodes
+            node_to_add = Node(sentence[1],sentence[0],start,end)
+            empty_queue.append(node_to_add)
     print(empty_queue)
         
         
@@ -111,6 +130,15 @@ def check_words_equal(word1,word2):
     d_meta = fuzzy.DMetaphone()
     #fuzzy match
     return d_meta(word1_mod) == d_meta(word2)
+
+def findSize(sentence):
+    count = 0
+    for x in sentence.split(" "):
+        if not x == '':
+            count += 1
+    return count
+
+
 
 def upload_to_gcp(filename:str):
     """
