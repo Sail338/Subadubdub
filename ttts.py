@@ -1,5 +1,10 @@
 from google.cloud import texttospeech
+import extract
 
+source_audio = 'path/to/flac/file'
+script = 'path/to/script'
+
+stt = gen_transcript(source_audio, script)
 # Instantiates a client
 client = texttospeech.TextToSpeechClient()
 #ben, leslie, andy
