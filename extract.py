@@ -43,13 +43,12 @@ def upload_to_gcp(filename:str):
     storage_client = storage.Client()
     bucket_to_use = storage_client.get_bucket('jakepaulwasamistae')
     blob = bucket_to_use.blob(filename)
-    if(!blob.exists()):
+    if not blob.exists():
         blob.upload_from_filename(filename)
     #return the file uri
     uri_base = "gs://jakepaulwasamistae/"
     uri = uri_base + filename
     return uri
-upload_to_gcp("test.flac")
 
 
 
