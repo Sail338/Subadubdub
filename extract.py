@@ -71,9 +71,13 @@ def gen_transcript(filename:str,script_path:str):
     transcript_ptr = 0
     start = -1.1
     end = -1.1
+    prev_start = start
+    prev_end = end
     for sentence in sentences:
         actualSize = findSize(sentence[0])
         print(transcript_ptr)
+        prev_start = start
+        prev_end = end
         start = -1.0
         end = -1.0
         found = False
@@ -111,8 +115,33 @@ def gen_transcript(filename:str,script_path:str):
                     transcript_ptr = word2 + 1
                     found = True
                     break
+        #Could not find the correct start or end times for first and last words
+        #Time to estimate!
         if start < 0 or end <0:
-            raise Exception
+            '''
+               We know that, if all previous sentences were calculated correctly,
+               The start and end time of this sentence must be after the previous
+               end time of the last sentence (somewhere near the first word after the last sentence)
+               or 0 if its the first sentence. Once we have the start we will calculate the average
+               talking speed (wpm) of the characters. Using this speed we can define a low ball
+               estimate for how long the sentence that couldnt be defined will take, allowing us
+               to define the end time. If this is the first sentence we will attempt to use the
+               average persons wpm (150 wpm).
+            '''
+
+            #No previous sentences 
+            if len(empty_queue) == 0:
+                start = merged_words[0][1]
+                end = actualSize * (14/6)
+                transcript_ptr = actualSize - int(actualSize*1/4)
+            else:
+                start = merged_words[transcript_ptr][1]
+                avg_wpm = findAverageWPM(empty_queue)
+                end = actualSize * avg_wpm
+                transcript_ptr += actualSize - int(actualSize * 1/4)
+
+
+            
         else:
             #create nodes
             node_to_add = Node(sentence[1],sentence[0],start,end)
@@ -122,6 +151,15 @@ def gen_transcript(filename:str,script_path:str):
         
 
     #search for the first word
+def findAverageWPM(queue):
+    words = 0
+    total_time = 0.0
+    for x in empty_queue:
+        total_time += abs(x.end - x.start)
+        words += findSize(x.sentence)
+    return words/total_time
+
+
 
 def check_words_equal(word1,word2):
     #remove punctuation from word1
