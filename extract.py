@@ -30,7 +30,7 @@ class Node:
         return a
         
 
-def gen_transcript(filename:str,script_path:str):
+def gen_transcript(filename:str,script_path:str,to_lang:str):
     """generates a transcript"""
     client = speech.SpeechClient()
     #upload to gcp
@@ -145,7 +145,7 @@ def gen_transcript(filename:str,script_path:str):
             
         else:
             #create nodes
-            node_to_add = Node(sentence[1],translate.translate_phrase(sentence[0],'de'),start,end)
+            node_to_add = Node(sentence[1],translate.translate_phrase(sentence[0],to_lang),start,end)
             empty_queue.append(node_to_add)
     print(empty_queue)
         
@@ -194,4 +194,3 @@ def upload_to_gcp(filename:str):
     return uri
 
 
-gen_transcript("parksandrec.flac",'rickandmortyscript.txt')
