@@ -48,25 +48,32 @@
 	
 		<div class="container row viewing">
 			<div class="container md-col-6">
-					<iframe src='{{iframe1}}' height="200" width="300"></iframe>
+				<video width="320" height="240" controls>
+						<source src="{{iframe1}}" type="video/mp4">
+				</video>			
 			</div>
 			<div class="container md-col-6">
-					<iframe src='{{iframe2}}' height="200" width="300"></iframe>
+				<video width="320" height="240" controls>
+						<source src="{{iframe2}}" type="video/mp4">
+				</video>			
 			</div>
 		</div>
 	
 <script type="text/javascript">
 	$(document).ready(function(){
-//		$(this).find('.viewing').hide()
+		
 		(function poll() {
+
 	    	setTimeout(function() {
 		        	$.ajax({
 			            url: "/poll",
 			            type: "GET",
 			            success: function(data) {
 			                if(data['resp'] == 'yeet'){
-			                	$(this).find('.loader').hide()
-			                	$(this).find('.viewing').show()
+			                	$('.loader').remove()
+								var iframe = document.getElementById('frame');
+								iframe.src = iframe.src;
+								return;							    	
 			                } else{
 			                	console.log('neet');
 							}

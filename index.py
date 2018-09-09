@@ -24,10 +24,10 @@ def workflow():
 def poll():
     my_file = Path("static/final.mp4")
     if not my_file.exists():
-        resp = {"resp":"Nah"}
+        resp = {"resp":"nah"}
         return jsonify(resp)
     else:
-        resp = {"resp":"Yeet"}
+        resp = {"resp":"yeet"}
         return jsonify(resp)
  
 @app.route('/display')
