@@ -131,7 +131,7 @@ input {
 			  url: '/workflow',
 			  data: "nunce",
 			  success: function(){
-			  	console.log("hello")
+					  window.location.href="{{ url_for( 'display') }}"
 			  },
 			  error: function(){
 			  	alert('error');

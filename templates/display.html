@@ -48,16 +48,16 @@
 	
 		<div class="container row viewing">
 			<div class="container md-col-6">
-				<iframe src="parksandrec.mp4" height="200" width="300"></iframe>
+					<iframe src='{{iframe1}}' height="200" width="300"></iframe>
 			</div>
 			<div class="container md-col-6">
-				<iframe src="final.mp4" height="200" width="300"></iframe>
+					<iframe src='{{iframe2}}' height="200" width="300"></iframe>
 			</div>
 		</div>
 	
 <script type="text/javascript">
 	$(document).ready(function(){
-		$(this).find('.viewing').hide()
+//		$(this).find('.viewing').hide()
 		(function poll() {
 	    	setTimeout(function() {
 		        	$.ajax({
@@ -68,8 +68,8 @@
 			                	$(this).find('.loader').hide()
 			                	$(this).find('.viewing').show()
 			                } else{
-			                	poll()
-			                }
+			                	console.log('neet');
+							}
 			            },
 			           
 			            dataType: "json",

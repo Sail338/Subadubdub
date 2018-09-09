@@ -27,11 +27,11 @@ def finalize_video(audio_file,script_file,lang_code):
         overlay_sound = overlay_sound[0:start*SECONDS-1]+curr_output+overlay_sound[end*SECONDS+1]
         outputFilePtr+=1
     final_audio = original_sound.overlay(overlay_sound)
-    final_audio.export("results/final_audio.mp3",format="mp3")
+    final_audio.export("static/final_audio.mp3",format="mp3")
     video = mpe.VideoFileClip("parksandrec.mp4")
-    audio = mpe.AudioFileClip("results/final_audio.mp3")
+    audio = mpe.AudioFileClip("static/final_audio.mp3")
     final_video = video.set_audio(audio)
-    final_video.write_videofile("results/final.mp4")
+    final_video.write_videofile("static/final.mp4")
 
 def speed_change(sound,speed=1.0):
     sound_with_altered_frame_rate = sound._spawn(sound.raw_data, overrides={
