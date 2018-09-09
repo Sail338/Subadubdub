@@ -32,10 +32,10 @@ def generate_audio_clip(client, node, node_num, language_code, characters):
         # Write the response to the output file.
             out.write(snippet.audio_content)
             print('Audio content written to output file ' + str(node_num))
-        time_delta = node.end - node.start        
-        audio = AudioSegment.from_file(output_file)
-        audio.duration_seconds = time_delta
-        audio.export(output_file, format='mp3')
+     #   time_delta = node.end - node.start        
+      #  audio = AudioSegment.from_file(output_file)
+    #    audio.duration_seconds = time_delta
+      #  audio.export(output_file, format='mp3')
 
 def configure_speaker_snippet(node, character_voices, client, language_code, audio_config):
     voice = configure_voice(node, character_voices, language_code)    
