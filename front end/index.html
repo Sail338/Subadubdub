@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sub-A-Dub-Dub</title>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  
+	  <link rel="stylesheet" type="text/css" href="style.css">
+	  <script src="scripts.js"></script>
+
+</head>
+<body class ="container bg">
+		
+		<div class="container col-md-12 text-center header">
+			<h1>Sub-a-Dub-Dub</h1>
+			<h3>Upload and dub a video in any language!</h3>
+		</div>
+
+			<form action="/workflow">
+
+				<main class='container col-md-4'>
+					<h1 class='number'>1.</h1>
+					<div class="center">
+						<h2> <strong> Choose a video </strong></h2>
+		  				<input type="file" name="video" accept="video/*"> 
+		  			</div>
+		  		</main>
+
+		  		<main class='container col-md-4'>
+		  		<h1 class='number'>2.</h1>
+		  			<div class="center">
+		  				<h2> <strong> Upload the script </strong></h2>
+		  				<input type="file" name="script" accept="text/*">
+		  			</div>	
+	  			</main>
+
+	  		<main class='container col-md-4'>
+					<h1 class='number'>3.</h1>
+					<div class="center">
+						<h2><strong>Choose a language!</strong></h2>
+						<br>
+						<select class="custom-select">
+						  	<option selected>Open this select menu</option>
+						  	<option value="1">Chinese</option>
+						  	<option value="2">Japanese</option>
+						  	<option value="3">German</option>
+						  	<option value="4">Hebrew</option>
+						  	<option value="5">Russian</option>
+						  	<option value="6">Tamil</option>
+						  	<option value="7">Korean</option>
+						  	<option value="9">Spanish</option>
+						</select>
+					</div>
+				</main>
+				<br>
+				<br>
+				<br>
+				<br>
+				<div class='container mt-2 col-md-12 text-center'>
+					<button type="button" class="btn btn-primary" onclick='submit()'>Submit</button>
+				</div>
+			</form>		
+		</div>
+
+
+</body>
+</html>
