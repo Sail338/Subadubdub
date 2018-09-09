@@ -48,21 +48,18 @@ def configure_voice(node, character_voices, language_code):
     return voice
 
 
-source_audio = 'output.flac'
-#need the transcript here
-script = 'script.txt'
+def generate_mp3(source_audio,script,lang_code):
+    #Get timed audio transcript
+    transcript = gt.gen_transcript(source_audio, script,lang_code)
 
-#Get timed audio transcript
-transcript = gt.gen_transcript(source_audio, script, 'de')
+    # Instantiates a client
+    client = texttospeech.TextToSpeechClient()
+    node_num = 1
 
-# Instantiates a client
-client = texttospeech.TextToSpeechClient()
-node_num = 1
+    characters = generate_characters()
 
-characters = generate_characters()
-
-#eventually adapt this to take command line input for dynamic language change
-for node in transcript:
-    generate_audio_clip(client, node, node_num, 'de', characters)
-    node_num = node_num + 1
-return transcript
+    #eventually adapt this to take command line input for dynamic language change
+    for node in transcript:
+        generate_audio_clip(client, node, node_num, lang_code, characters)
+        node_num = node_num + 1
+    return transcript
