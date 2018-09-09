@@ -22,7 +22,7 @@ def workflow():
     
 @app.route("/poll")
 def poll():
-    my_file = Path("../final.mp4")
+    my_file = Path("results/final.mp4")
     if not my_file.exists():
         resp = {"resp":"Nah"}
         return jsonify(resp)
