@@ -1,6 +1,8 @@
 from flask import Flask,render_template, request, redirect, url_for, make_response, jsonify
 from threading import Thread
-from .. import workflow as wf
+import sys
+sys.path.append("..")
+import workflow as wf
 import os
 from pathlib import Path
 app = Flask(__name__)
@@ -13,7 +15,7 @@ def workflow():
     mp4input = "input.mp4"
     script = "script.txt"
     lang_ = "de"
-    thread = Thread(target = wf.begin_workflow,args = [mp4input,script,lang_]) 
+    thread = Thread(target = wf.begin_workflow,args = [script,mp4input,lang_]) 
     thread.start()
     data = {"resp":"final.mp4"}
     return jsonify(data)
