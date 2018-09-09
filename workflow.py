@@ -8,3 +8,4 @@ def begin_workflow(script_path,video_path,lang_code):
     time.sleep(2)
     q = finalize_video.finalize_video("input.flac",script_path,lang_code)
     
+begin_workflow("script.txt","parksandrec.mp4","de")
