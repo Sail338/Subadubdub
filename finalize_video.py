@@ -8,7 +8,7 @@ def finalize_video():
     queue = ttts.generate_mp3("input.flac","script.txt","de")
     original_sound = AudioSegment.from_file("input.flac","flac")
     SECONDS = 1000
-    QUIET = 1
+    QUIET = 5
     size_of_original = len(original_sound)
     overlay_sound = AudioSegment.silent(duration=size_of_original)
     outputFilePtr =1 
@@ -29,8 +29,8 @@ def finalize_video():
     final_audio.export("results/final_audio.mp3",format="mp3")
     video = mpe.VideoFileClip("parksandrec.mp4")
     audio = mpe.AudioFileClip("results/final_audio.mp3")
-    video = video.set_audio(audio)
-    video.write_videofile("results/final.mp4")
+    final_video = video.set_audio(audio)
+    final_video.write_videofile("results/final.mp4")
 
 def speed_change(sound,speed=1.0):
     sound_with_altered_frame_rate = sound._spawn(sound.raw_data, overrides={
