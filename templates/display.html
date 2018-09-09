@@ -41,22 +41,23 @@
 
 </head>
 <body>
+	<h1> Please wait, your video is being dubbed! </h1>
 	<div class="loader">
-		<h1> Please wait, your video is being dubbed! </h1>
+		
 	</div>
 	
 		<div class="container row viewing">
 			<div class="container md-col-6">
-				<iframe src="parksandrec.mp4"></iframe>
+				<iframe src="parksandrec.mp4" height="200" width="300"></iframe>
 			</div>
 			<div class="container md-col-6">
-				<iframe src="final.mp4"></iframe>
+				<iframe src="final.mp4" height="200" width="300"></iframe>
 			</div>
 		</div>
 	
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('.viewing').hide()
+		$(this).find('.viewing').hide()
 		(function poll() {
 	    	setTimeout(function() {
 		        	$.ajax({
@@ -64,8 +65,8 @@
 			            type: "GET",
 			            success: function(data) {
 			                if(data['resp'] == 'yeet'){
-			                	$('.loader').hide()
-			                	$('.viewing').show()
+			                	$(this).find('.loader').hide()
+			                	$(this).find('.viewing').show()
 			                } else{
 			                	poll()
 			                }
