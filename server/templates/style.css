@@ -1,0 +1,60 @@
+body {
+  background-color: rgb(255, 55, 1); 
+  color: black;
+  font-size: 120%;
+}
+
+
+
+main {
+  height: 400px;
+  width: 500px;
+  padding: 10px;
+  margin: 40px;
+  display: flex;
+  border-radius: 90%;
+  border-style: solid;
+  border-color: #52dbff;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+  overflow: auto;
+}
+
+.number{
+	color: #52dbff;
+}
+
+.btn {
+	background-color: #52dbff;
+	color: black;
+	margin-top: 80px;
+	font-size: 16px;
+	padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
+}
+
+main div {
+  color: #52dbff;
+  padding: 40px;
+  resize: vertical;
+  overflow: auto;
+  height: 400px;
+}
+
+input {
+	display: flex;
+	margin-left: 80px;
+	margin-top: 60px;
+	flex-direction: column;
+	justify-content: center;
+	color: purple;
+    -webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
+	border-radius: 50px;
+}

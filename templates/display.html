@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sub-a-Dub-Dub</title>
+	<meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	 
+	<style>
+		body {
+			background-color: rgb(255, 55, 1);
+		}
+		.loader {
+			margin: auto;
+			border: 16px solid #f3f3f3;
+			border-radius: 50%;
+			border-top: 16px solid #3498db;
+			width: 120px;
+			height: 120px;
+			-webkit-animation: spin 2s linear infinite; /* Safari */
+			animation: spin 2s linear infinite;
+		}
+
+		/* Safari */
+		@-webkit-keyframes spin {
+		  0% { -webkit-transform: rotate(0deg); }
+		  100% { -webkit-transform: rotate(360deg); }
+		}
+
+		@keyframes spin {
+		  0% { transform: rotate(0deg); }
+		  100% { transform: rotate(360deg); }
+		}
+
+		.viewing{
+
+		}
+	</style>
+
+</head>
+<body>
+	<h1> Please wait, your video is being dubbed! </h1>
+	<div class="loader">
+		
+	</div>
+	
+		<div class="container row viewing">
+			<div class="container md-col-6">
+				<video width="320" height="240" controls>
+						<source src="{{iframe1}}" type="video/mp4">
+				</video>			
+			</div>
+			<div class="container md-col-6">
+				<video width="320" height="240" controls>
+						<source src="{{iframe2}}" type="video/mp4">
+				</video>			
+			</div>
+		</div>
+	
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		(function poll() {
+
+	    	setTimeout(function() {
+		        	$.ajax({
+			            url: "/poll",
+			            type: "GET",
+			            success: function(data) {
+			                if(data['resp'] == 'yeet'){
+			                	$('.loader').remove()
+								var iframe = document.getElementById('frame');
+								iframe.src = iframe.src;
+								return;							    	
+			                } else{
+			                	console.log('neet');
+							}
+			            },
+			           
+			            dataType: "json",
+			            complete: poll,
+			            timeout: 2000
+			        })
+			    }, 5000);
+			})();
+		});
+</script>
+</body>
+</html>

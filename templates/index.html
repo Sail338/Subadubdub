@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sub-A-Dub-Dub</title>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  
+<style>
+body {
+  background-color: rgb(255, 55, 1); 
+  color: black;
+  font-size: 120%;
+}
+
+
+
+main {
+  height: 400px;
+  width: 500px;
+  padding: 10px;
+  margin: 40px;
+  display: flex;
+  border-radius: 90%;
+  border-style: solid;
+  border-color: #52dbff;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+  overflow: auto;
+}
+
+.number{
+	color: #52dbff;
+}
+
+.btn {
+	background-color: #52dbff;
+	color: black;
+	margin-top: 80px;
+	font-size: 16px;
+	padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
+}
+
+main div {
+  color: #52dbff;
+  padding: 40px;
+  resize: vertical;
+  overflow: auto;
+  height: 400px;
+}
+
+input {
+	display: flex;
+	margin-left: 80px;
+	margin-top: 60px;
+	flex-direction: column;
+	justify-content: center;
+	color: purple;
+    -webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
+	border-radius: 50px;
+}
+</style>
+
+</head>
+<body class ="container bg">
+		
+		<div class="container col-md-12 text-center header">
+			<h1>Sub-a-Dub-Dub</h1>
+			<h3>Upload and dub a video in any language!</h3>
+		</div>
+
+				<main class='container col-md-4'>
+					<h1 class='number'>1.</h1>
+					<div class="center">
+						<h2> <strong> Choose a video </strong></h2>
+		  				<input type="file" name="video" accept="video/*"> 
+		  			</div>
+		  		</main>
+
+		  		<main class='container col-md-4'>
+		  		<h1 class='number'>2.</h1>
+		  			<div class="center">
+		  				<h2> <strong> Upload the script </strong></h2>
+		  				<input type="file" name="script" accept="text/*">
+		  			</div>	
+	  			</main>
+
+	  		<main class='container col-md-4'>
+					<h1 class='number'>3.</h1>
+					<div class="center">
+						<h2><strong>Choose a language!</strong></h2>
+						<br>
+						<select class="custom-select">
+						  	<option selected>Open this select menu</option>
+						  	<option value="1">Chinese</option>
+						  	<option value="2">Japanese</option>
+						  	<option value="3">German</option>
+						  	<option value="4">Hebrew</option>
+						  	<option value="5">Russian</option>
+						  	<option value="6">Tamil</option>
+						  	<option value="7">Korean</option>
+						  	<option value="9">Spanish</option>
+						</select>
+					</div>
+				</main>
+				<br>
+				<br>
+				<br>
+				<br>
+				<div class='container mt-2 col-md-12 text-center'>
+					<button type="button" class="btn btn-primary" onclick='submit()'>Submit</button>
+				</div>
+		</div>
+
+<script type="text/javascript">
+	function submit(){
+	$(document).ready(function(){
+	    $("button").click(function(){
+	       $.ajax({
+			  type: "GET",
+			  url: '/workflow',
+			  data: "nunce",
+			  success: function(){
+					  window.location.href="{{ url_for( 'display') }}"
+			  },
+			  error: function(){
+			  	alert('error');
+			  }
+			});
+	    });
+	});
+}
+</script>
+
+</body>
+</html>
