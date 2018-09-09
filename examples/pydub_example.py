@@ -9,14 +9,20 @@ def speed_change(mp3,speed=1.0):
 
 mp3 = AudioSegment.from_file("../data/cb214.mp3",format="mp3")
 
+
 ten_seconds_in = mp3[:10000]
+#Volume subtracting, by dB
 beginning = ten_seconds_in - 15
+
+#Probably wont need this, but stretching and shortening audio
 beginning = speed_change(beginning,1.01)
+#Concatanation of mp3's
 beginning = beginning + mp3[10001:]
 
 
 middle = mp3[40000:]
 
+#Overlaying audio files
 final = beginning.overlay(middle)
 
 
