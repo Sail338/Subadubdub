@@ -4,9 +4,10 @@ import moviepy.editor as mpe
 
 
 
-def finalize_video():
-    queue = ttts.generate_mp3("input.flac","script.txt","de")
-    original_sound = AudioSegment.from_file("input.flac","flac")
+def finalize_video(audio_file,script_file,lang_code):
+    
+    queue = ttts.generate_mp3(audio_file,script_file,lang_code)
+    original_sound = AudioSegment.from_file(audio_file,"flac")
     SECONDS = 1000
     QUIET = 5
     size_of_original = len(original_sound)
@@ -39,5 +40,3 @@ def speed_change(sound,speed=1.0):
     return sound_with_altered_frame_rate.set_frame_rate(sound.frame_rate)
 
 
-
-finalize_video()
